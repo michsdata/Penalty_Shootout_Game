@@ -1,8 +1,9 @@
 import random
+import time
 
-def play_penalty_shootout():
-    print(" Welcome to the Terminal Penalty Shootout ")
-    print("Best of 5 rounds. Can you beat the keeper?")
+def play_penalty_shootout_v2():
+    print(" Welcome to Terminal Penalty Shootout")
+    print("Best of 5 rounds. Brace yourself for the drama...")
     print("-" * 48)
     
     zones = ["left", "center", "right"]
@@ -11,52 +12,63 @@ def play_penalty_shootout():
     rounds = 5
     
     for round_num in range(1, rounds + 1):
-        print(f"\nRound {round_num}")
-        print(f"Score: Player {player_score} - {computer_score} Computer")
+        print(f"\n--- Round {round_num} ---")
+        print(f"Score: Player {player_score} - {computer_score} Computer\n")
         
-        # Player's turn to shoot
+        # --- PLAYER'S TURN TO SHOOT ---
         player_shot = ""
         while player_shot not in zones:
-            player_shot = input("Where will you shoot? (left/center/right): ").lower().strip()
+            player_shot = input("You step up to the spot. Where will you aim? (left/center/right): ").lower().strip()
             
         computer_dive = random.choice(zones)
         
-        print(f"You aimed {player_shot}...")
-        print(f"The keeper dived {computer_dive}!")
+        print(f"\nYou strike the ball towards the {player_shot}...")
+        time.sleep(1.5) 
+        
+        print(f"The keeper launches themselves to the {computer_dive}...")
+        time.sleep(1.5) 
         
         if player_shot == computer_dive:
-            print("❌ SAVED! The keeper read you perfectly.")
+            print("❌ SAVED! The keeper got a strong hand to it!")
         else:
-            print("⚽ GOAL! You buried it past the keeper.")
+            print("⚽ GOAL! The net bulges!")
             player_score += 1
             
-        # Computer's turn to shoot
-        print("\nNow you are in goal. The computer is stepping up...")
+        time.sleep(1) 
+            
+        # --- COMPUTER'S TURN TO SHOOT ---
+        print("\nNow you are in goal. The computer steps up...")
         player_dive = ""
         while player_dive not in zones:
             player_dive = input("Where will you dive? (left/center/right): ").lower().strip()
             
         computer_shot = random.choice(zones)
         
-        print(f"The computer aimed {computer_shot}...")
-        print(f"You dived {player_dive}!")
+        print(f"\nThe computer strikes the ball towards the {computer_shot}...")
+        time.sleep(1.5)
+        
+        print(f"You dive to the {player_dive}...")
+        time.sleep(1.5)
         
         if computer_shot == player_dive:
-            print("🧤 WHAT A SAVE! You denied the computer.")
+            print("🧤 WHAT A SAVE! You guessed the right way!")
         else:
-            print("⚽ GOAL! The computer scores.")
+            print("⚽ GOAL! The computer finds the back of the net.")
             computer_score += 1
+            
+        time.sleep(2) 
 
+    # --- FINAL RESULTS ---
     print("\n" + "=" * 48)
-    print("=== FINAL WHISTLE ===")
+    print("=== FULL TIME ===")
     print(f"Final Score: Player {player_score} - {computer_score} Computer")
     
     if player_score > computer_score:
         print("🏆 Congratulations! You won the shootout!")
     elif player_score < computer_score:
-        print("💔 Heartbreak!Computer wins this time.")
+        print("💔 Heartbreak! The computer wins this time.")
     else:
-        print("🤝 It's a draw! Sudden death awaits (next time).")
+        print("🤝 It's a draw!")
 
 if __name__ == "__main__":
-    play_penalty_shootout()
+    play_penalty_shootout_v2()
